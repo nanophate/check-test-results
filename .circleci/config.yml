@@ -6,6 +6,8 @@ jobs:
       - image: cimg/base:stable
     steps:
       - checkout
+      - run: |
+          circleci tests split --split-by=timings
       - run:
           name: Creating Dummy Artifacts
           command: |
