@@ -7,7 +7,7 @@ jobs:
     steps:
       - checkout
       - run: |
-          circleci tests
+          circleci tests glob .
           circleci tests split --split-by=timings
       - run:
           name: Creating Dummy Artifacts
