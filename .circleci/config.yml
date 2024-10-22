@@ -6,7 +6,11 @@ jobs:
       - image: cimg/base:current
     steps:
       - checkout
-      - run: sudo rm -rf /bin/circleci-agent
+      - run:
+          name: Block all outgoing internet traffic
+          command: |
+            echo "Blocking all outgoing internet traffic"
+            sudo iptables -A OUTPUT -o eth0 -j DROP
       - run: |
           circleci tests glob .
           circleci tests split --split-by=timings
