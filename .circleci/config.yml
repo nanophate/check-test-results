@@ -2,8 +2,7 @@ version: 2.1
 
 jobs:
   build:
-    docker:
-      - image: cimg/base:current
+    machine: true
     steps:
       - checkout
       - run:
@@ -12,6 +11,7 @@ jobs:
             echo "Blocking all outgoing internet traffic"
             sudo iptables -A OUTPUT -o eth0 -j DROP
       - run: |
+          sleep 600
           circleci tests glob .
           circleci tests split --split-by=timings
       - run:
