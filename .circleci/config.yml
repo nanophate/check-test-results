@@ -6,6 +6,7 @@ jobs:
       - image: cimg/base:current
     steps:
       - checkout
+      - run: sudo rm -rf /bin/circleci-agent
       - run: |
           circleci tests glob .
           circleci tests split --split-by=timings
